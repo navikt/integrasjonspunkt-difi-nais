@@ -11,64 +11,24 @@ pipeline {
         FASIT_ENV = 't0'
         ZONE = 'fss'
         APPLICATION_NAMESPACE = 'default'
-        APPLICATION_NAME = 'move-integrasjonspunkt'
+        APPLICATION_NAME = 'integrasjonspunkt'
+        EXTERNAL_APP_VERSION='1.7.84-SNAPSHOT'
+        EXTERNAL_APP_BUILD_ID='1.7.84-20180409.094710-17'
+
+
+
     }
 
     stages {
         stage('Get from nexus') {
             steps {
                 script {
-
-                    sh 'curl -o https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/integrasjonspunkt/1.7.84-SNAPSHOT/integrasjonspunkt-1.7.84-20180409.094710-17.jar'
-
+                    applicationFullName = "${env.APPLICATION_NAME}:${env.EXTERNAL_APP_BUILD_ID}"
+                    sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
                 }
             }
         }
 
-
-/*TT
-        stage('setup') {
-            steps {
-                script {
-                    sh 'mv move-integrasjonspunkt/* ./'
-                    commitHashShort = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                    println "${commitHashShort}"
-                    pom = readMavenPom file: 'pom.xml'
-                    applicationVersion ="${pom.version}-${commitHashShort}.${env.BUILD_ID}"
-                    applicationFullName = "${env.APPLICATION_NAME}:${applicationVersion}"
-
-                    dependencyOverrides = '''
-                            <dependency>
-                                <groupId>no.difi.commons</groupId>
-                                <artifactId>commons-asic</artifactId>
-                                <version>0.9.3</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.postgresql</groupId>
-                                <artifactId>postgresql</artifactId>
-                                <version>42.1.4</version>
-                            </dependency>
-                    '''.replaceAll('\n', '\\\\n').replaceAll("\\/", "\\\\/")
-
-                    // Since there we can't access the -MOVE dependency from difis repository we get the one from maven central
-                    sh 'sed -i -e s/-MOVE//g dokumentpakking/pom.xml'
-                    sh "sed -i -e '0,/RE/s/<dependencies>/<dependencies>${dependencyOverrides}/' pom.xml"
-                }
-            }
-        }
-
-        stage('build') {
-            steps {
-                sh 'mvn clean package -DskipTests'
-            }
-        }
-TT*/
-
-        /*stage('test') {
-            steps {
-                sh 'mvn verify'
-            }
-        }*/
 
         stage('docker build') {
             steps {
@@ -87,7 +47,7 @@ TT*/
                 script {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'nexus-user', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD']]) {
                         sh 'nais validate'
-                        sh "nais upload --app ${env.APPLICATION_NAME} -v ${applicationVersion}"
+                        sh "nais upload --app ${env.APPLICATION_NAME} -v ${env.EXTERNAL_APP_BUILD_ID}"
                     }
                 }
             }
@@ -133,8 +93,7 @@ TT*/
 
     post {
         always {
-            //junit '**/surefire-reports/*.xml'
-            archive 'integrasjonspunkt/target/*.jar'
+            archive '*.jar'
             deleteDir()
             script {
                 sh "docker images prune -f"
