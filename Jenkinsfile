@@ -3,10 +3,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'default'
-    }
-
     environment {
         FASIT_ENV = 't0'
         ZONE = 'fss'
