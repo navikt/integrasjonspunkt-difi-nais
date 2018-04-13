@@ -1,0 +1,41 @@
+image: "docker.adeo.no:5000/integrasjon/move-integrasjonspunkt"
+replicas:
+  min: 1
+  max: 1
+  cpuThresholdPercentage: 80
+port: 8080
+healthcheck:
+  liveness:
+    path: /manage/info
+    initialDelay: 20
+    periodSeconds: 5
+    failureThreshold: 10
+  readiness:
+    path: /manage/health
+    initialDelay: 20
+prometheus:
+  enabled: false
+  path: /prometheus
+resources:
+  limits:
+    cpu: 2000m
+    memory: 4096Mi
+  requests:
+    cpu: 100m
+    memory: 1024Mi
+ingress:
+  enabled: true
+fasitResources:
+  used:
+  - alias: move-preprod-certificate
+    resourceType: certificate
+    propertyMap:
+      password: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
+      keystorealias: DIFI_MOVE_ORG_KEYSTORE_ALIAS
+  - alias: move-properties
+    resourceType: applicationProperties
+  - alias: move-postgresql-credentials
+    resourceType: credential
+    propertyMap:
+      username: SPRING_DATASOURCE_USERNAME
+      password: SPRING_DATASOURCE_PASSWORD
