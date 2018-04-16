@@ -2,7 +2,7 @@ FROM navikt/java:9
 
 EXPOSE 8080
 
-MAINTAINER NAV IKT <kevin.sillerud@nav.no>
+MAINTAINER NAV IKT <tommy.kristiansen@nav.no>
 
 LABEL package="no.difi"
 LABEL artifact="meldingsformidler"

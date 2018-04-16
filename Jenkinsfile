@@ -19,7 +19,7 @@ pipeline {
         stage('Get from nexus') {
             steps {
                 script {
-                    applicationFullName = "${env.APPLICATION_NAME}:${env.EXTERNAL_APP_BUILD_ID}"
+                    applicationFullName = "${env.APPLICATION_NAME}:${env.EXTERNAL_APP_BUILD_ID}:${env.BUILD_ID}"
                     sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
                 script {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'nexus-user', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD']]) {
                         sh 'nais validate'
-                        sh "nais upload --app ${env.APPLICATION_NAME} -v ${env.EXTERNAL_APP_BUILD_ID}"
+                        sh "nais upload --app ${env.APPLICATION_NAME} -v ${env.EXTERNAL_APP_BUILD_ID}${env.BUILD_ID}"
                     }
                 }
             }
