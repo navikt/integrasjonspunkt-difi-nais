@@ -1,8 +1,4 @@
-FROM openjdk:9-jre-slim
-
-
-
-
+FROM navikt/java:9
 
 COPY ./run-java.sh /
 
@@ -11,10 +7,6 @@ EXPOSE 8080
 
 ENTRYPOINT ["/run-java.sh"]
 
-
-
-
-FROM navikt/java:9
 
 MAINTAINER NAV IKT <kevin.sillerud@nav.no>
 
