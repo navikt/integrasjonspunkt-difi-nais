@@ -16,6 +16,16 @@ pipeline {
     }
 
     stages {
+        stage('prepare') { steps { ciSkip action: 'check' } }
+        stage('initialize') {
+            steps {
+                script {
+                    gitVars = utils.gitVars(env.APPLICATION_NAME)
+                    utils.slackBuildStarted(env.APPLICATION_NAME, gitVars.changeLog.toString())
+                    utils.githubCommitStatus(env.APPLICATION_NAME, gitVars.commitHash, "pending", "Build started")
+                }
+            }
+        }
         stage('Get from nexus') {
             steps {
                 script {
