@@ -86,13 +86,24 @@ pipeline {
         }
 
     }
-
     post {
         always {
-            archive '*.jar'
+            ciSkip action: 'postProcess'
             deleteDir()
             script {
-                sh "docker images prune -f"
+                utils.dockerPruneBuilds()
+            }
+        }
+        success {
+            script {
+                utils.slackBuildSuccess(env.APPLICATION_NAME)
+                utils.githubCommitStatus(env.APPLICATION_NAME, gitVars.commitHash, "success", "Build success")
+            }
+        }
+        failure {
+            script {
+                utils.slackBuildFailed(env.APPLICATION_NAME)
+                utils.githubCommitStatus(env.APPLICATION_NAME, gitVars.commitHash, "failure", "Build failed")
             }
         }
     }
