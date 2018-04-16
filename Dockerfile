@@ -1,12 +1,6 @@
 FROM navikt/java:9
 
-COPY ./run-java.sh /
-
-
 EXPOSE 8080
-
-ENTRYPOINT ["/run-java.sh"]
-
 
 MAINTAINER NAV IKT <kevin.sillerud@nav.no>
 
