@@ -32,7 +32,6 @@ pipeline {
                     docker.withRegistry('https://repo.adeo.no:5443/') {
                         def image = docker.build("integrasjon/${applicationFullName}")
                         image.push()
-                        image.push 'latest'
                     }
                 }
             }
