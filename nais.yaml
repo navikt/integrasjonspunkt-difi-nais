@@ -1,4 +1,4 @@
-image: "docker.adeo.no:5000/integrasjon/integrasjonspunkt"
+image: "repo.adeo.no:5443/integrasjon/integrasjonspunkt"
 replicas:
   min: 1
   max: 1
