@@ -14,8 +14,6 @@ ENV LANG="no_NB.UTF-8"
 ENV TZ="Europe/Oslo"
 
 # Please see https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits
-ENV DEFAULT_JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-
 ENV JAVA_APP_PARAMS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
 ENV APP_MAIN_CLASS no.difi.meldingsutveksling.IntegrasjonspunktApplication
 ENV APP_PROFILE staging
@@ -31,4 +29,4 @@ COPY integrasjonspunkt.jar /app/app.jar
 
 WORKDIR /app
 
-CMD java -jar ${APP_JAVA_PARAMS} ${DEFAULT_JAVA_OPTS} app.jar ${APP_MAIN_CLASS} --spring.profiles.active=${APP_PROFILE}
+CMD java -jar ${APP_JAVA_PARAMS} app.jar ${APP_MAIN_CLASS} --spring.profiles.active=${APP_PROFILE}

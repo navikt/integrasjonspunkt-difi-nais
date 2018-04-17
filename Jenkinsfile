@@ -29,7 +29,7 @@ pipeline {
         stage('Get from nexus') {
             steps {
                 script {
-                    applicationFullName = "${env.APPLICATION_NAME}:${env.EXTERNAL_APP_BUILD_ID}-buildId-${env.BUILD_ID}"
+                    applicationFullName = "${env.APPLICATION_NAME}:${env.EXTERNAL_APP_BUILD_ID}${env.BUILD_ID}"
                     sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
                 }
             }
