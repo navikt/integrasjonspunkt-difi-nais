@@ -8,8 +8,8 @@ pipeline {
         ZONE = 'fss'
         APPLICATION_NAMESPACE = 'default'
         APPLICATION_NAME = 'integrasjonspunkt'
-        EXTERNAL_APP_VERSION='1.7.84-SNAPSHOT'
-        EXTERNAL_APP_BUILD_ID='1.7.84-20180409.094710-17'
+        EXTERNAL_APP_VERSION='1.7.84'
+        EXTERNAL_APP_BUILD_ID='1.7.84'
 
 
 
@@ -30,7 +30,8 @@ pipeline {
             steps {
                 script {
                     applicationFullName = "${env.APPLICATION_NAME}:${env.EXTERNAL_APP_BUILD_ID}${env.BUILD_ID}"
-                    sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
+                    //sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
+                    sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/releases/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
                 }
             }
         }
