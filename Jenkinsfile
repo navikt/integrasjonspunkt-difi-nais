@@ -8,8 +8,8 @@ pipeline {
         ZONE = 'fss'
         APPLICATION_NAMESPACE = 'default'
         APPLICATION_NAME = 'integrasjonspunkt'
-        EXTERNAL_APP_VERSION='1.7.84-SNAPSHOT'
-        EXTERNAL_APP_BUILD_ID='1.7.84-20180409.094710-17'
+        EXTERNAL_APP_VERSION='1.7.85-SNAPSHOT'
+        EXTERNAL_APP_BUILD_ID='1.7.85-20180426.094411-8'
 
 
 
