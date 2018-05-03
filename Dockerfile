@@ -1,4 +1,4 @@
-FROM navikt/java:9
+FROM openjdk:9-jre-slim
 
 EXPOSE 8080
 
