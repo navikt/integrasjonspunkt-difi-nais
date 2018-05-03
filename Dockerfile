@@ -1,4 +1,5 @@
 FROM openjdk:9-jre-slim
+
 EXPOSE 8080
 
 MAINTAINER NAV IKT <tommy.kristiansen@nav.no>
