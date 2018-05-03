@@ -13,7 +13,7 @@ ENV LANG="no_NB.UTF-8"
 ENV TZ="Europe/Oslo"
 
 # Please see https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits
-ENV JAVA_APP_PARAMS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dlogback.configurationFile=logback-spring.xml'
+ENV JAVA_APP_PARAMS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dlogback.configurationFile=file:logback-spring.xml'
 ENV APP_MAIN_CLASS no.difi.meldingsutveksling.IntegrasjonspunktApplication
 ENV APP_PROFILE staging
 ENV SPRING_CLOUD_CONFIG_ENABLED false
@@ -25,6 +25,8 @@ ENV ENDPOINTS_INFO_ENABLED=true
 #ENV SPRING_DATASOURCE_URL=jdbc:postgresql://tpa-move-integrasjonspunkt-postgresql.tpa/move_db
 
 COPY integrasjonspunkt.jar /app/app.jar
+COPY logback-spring.xml /app
+
 
 WORKDIR /app
 
