@@ -2,9 +2,8 @@
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
-    <!-- Logstash destination -->
 
-    <root level="DEBUG">
+    <root level="ALL">
         <appender-ref ref="CONSOLE"/>
     </root>
 
