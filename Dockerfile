@@ -17,7 +17,7 @@ ENV TZ="Europe/Oslo"
 ENV JAVA_APP_PARAMS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
 # -Dlogback.configurationFile=/app/logback-spring.xml'
 #ENV JAVA_LOGG_OVERRIDE='-Dlogging.level.org.springframework.ws.client.MessageTracing=DEBUG -Dlogging.level.org.springframework.ws.server.MessageTracing=DEBUG -Dlogging.level.mf.logger.translog=DEBUG -Dlogging.level.no.difi.sdp.client2.internal.DigipostMessageSenderFacade=DEBUG'
-ENV JAVA_LOGG_OVERRIDE='-Dlogging.level=DEBUG'
+#ENV JAVA_LOGG_OVERRIDE='-Dlogging.level=DEBUG'
 
 ENV APP_MAIN_CLASS no.difi.meldingsutveksling.IntegrasjonspunktApplication
 ENV APP_PROFILE staging
@@ -35,4 +35,5 @@ COPY logback-spring.xml /app
 
 WORKDIR /app
 
-CMD java -jar ${APP_JAVA_PARAMS} ${JAVA_LOGG_OVERRIDE} app.jar ${APP_MAIN_CLASS} --spring.profiles.active=${APP_PROFILE}
+#CMD java -jar ${APP_JAVA_PARAMS} ${JAVA_LOGG_OVERRIDE} app.jar ${APP_MAIN_CLASS} --spring.profiles.active=${APP_PROFILE}
+CMD java -jar ${APP_JAVA_PARAMS}  app.jar ${APP_MAIN_CLASS} --spring.profiles.active=${APP_PROFILE}
