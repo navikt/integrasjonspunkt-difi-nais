@@ -16,7 +16,7 @@ pipeline {
     }
 
     stages {
-        stage('prepare') { steps { ciSkip action: 'check' } }
+        stage('prepare') { steps { ciSkip 'check' } }
         stage('initialize') {
             steps {
                 script {
@@ -97,7 +97,7 @@ pipeline {
     }
     post {
         always {
-            ciSkip action: 'postProcess'
+            ciSkip 'postProcess'
             deleteDir()
             script {
                 utils.dockerPruneBuilds()
