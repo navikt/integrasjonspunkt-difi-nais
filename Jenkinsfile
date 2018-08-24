@@ -15,14 +15,16 @@ pipeline {
         stage('initialize') {
             steps {
                 init action: 'default'
+                script {
+                    env.APPLICATION_VERSION = "${env.EXTERNAL_APP_BUILD_ID}${env.BUILD_ID}"
+                }
                 init action: 'updateStatus'
             }
         }
         stage('Get from nexus') {
             steps {
                 script {
-                    env.APPLICATION_VERSION = ${env.EXTERNAL_APP_BUILD_ID}${env.BUILD_ID}
-                    sh "curl -o integrasjonspunkt.jar  https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
+                    sh "curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/service/local/repositories/itest/content/no/difi/meldingsutveksling/${env.APPLICATION_NAME}/${env.EXTERNAL_APP_VERSION}/${env.APPLICATION_NAME}-${env.EXTERNAL_APP_BUILD_ID}.jar"
                 }
             }
         }
