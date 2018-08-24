@@ -18,7 +18,7 @@ pipeline {
                 script {
                     env.APPLICATION_VERSION = "${env.EXTERNAL_APP_BUILD_ID}${env.BUILD_ID}"
                 }
-                init action: 'updateStatus'
+                init action: 'updateStatus', applicationName: 'integrasjonspunkt-difi-nais'
             }
         }
         stage('Get from nexus') {
@@ -50,13 +50,13 @@ pipeline {
     }
     post {
         always {
-            postProcess action: 'always'
+            postProcess action: 'always', applicationName: 'integrasjonspunkt-difi-nais'
         }
         success {
-            postProcess action: 'success'
+            postProcess action: 'success', applicationName: 'integrasjonspunkt-difi-nais'
         }
         failure {
-            postProcess action: 'failure'
+            postProcess action: 'failure', applicationName: 'integrasjonspunkt-difi-nais'
         }
     }
 }
