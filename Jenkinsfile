@@ -43,7 +43,7 @@ pipeline {
         }
         stage('deploy to nais through jira') {
             steps {
-                deploy action: 'jiraPreprod'
+                deployApp action: 'jiraPreprod'
             }
         }
     }
