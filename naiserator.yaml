@@ -42,3 +42,6 @@ spec:
     requests:
       cpu: 100m
        memory: 1024Mi
+  env:
+    - name: SPRING_CONFIG_LOCATION
+      value: {{LOCAL_CONFIG_FILE_NAME}}

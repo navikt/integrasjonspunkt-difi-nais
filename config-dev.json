@@ -1,0 +1,4 @@
+{
+    "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
+    "LOCAL_CONFIG_FILE_NAME": "/app/config-preprod.properties"
+}
