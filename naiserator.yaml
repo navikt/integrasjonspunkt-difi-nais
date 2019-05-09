@@ -24,16 +24,11 @@ spec:
   prometheus:
     enabled: false
     path: /prometheus
-  istio:
-    enabled: false
-  ingresses:
-    enabled: true
   vault:
     enabled: true
     paths:
       - kvPath: {{VIRKSOMHETSSERTIFIKAT_VAULT_PATH}}
         mountPath: /var/run/secrets/nais.io/virksomhetssertifikat
-  webproxy: true
   resources:
     limits:
       cpu: 2000m
