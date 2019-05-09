@@ -11,7 +11,7 @@ ENV LC_ALL="no_NB.UTF-8"
 ENV LANG="no_NB.UTF-8"
 ENV TZ="Europe/Oslo"
 
-RUN apt install jq
+RUN apt install jq -y
 
 # -Dlogback.configurationFile=/app/logback-spring.xml'
 #ENV JAVA_LOGG_OVERRIDE='-Dlogging.level.org.springframework.ws.client.MessageTracing=DEBUG -Dlogging.level.org.springframework.ws.server.MessageTracing=DEBUG -Dlogging.level.mf.logger.translog=DEBUG -Dlogging.level.no.difi.sdp.client2.internal.DigipostMessageSenderFacade=DEBUG'
