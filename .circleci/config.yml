@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: "navikt/deployment-cli:v0.1.2"
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker image
+          command: docker build -t navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1} .
+      - run:
+          name: Release docker image
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker push navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1}
+      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
+          name: Create deployment request for development
+          command: deployment-cli deploy create --environment=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --team=teamdokumenthandtering -r=naiserator.yaml --version=${CIRCLE_SHA1}
+      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
+          name: Create deployment request for prod
+          command: deployment-cli deploy create --environment=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --team=teamdokumenthandtering -r=naiserator.yaml --version=${CIRCLE_SHA1}
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
