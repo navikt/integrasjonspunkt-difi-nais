@@ -22,10 +22,10 @@ jobs:
             docker push navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1}
       - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
           name: Create deployment request for development
-          command: deployment-cli deploy create --environment=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --config=config-dev.json --team=teamdokumenthandtering -r=naiserator.yaml --version=${CIRCLE_SHA1}
+          command: deployment-cli deploy create --environment=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --config=config-dev.json --team=integrasjon -r=naiserator.yaml --version=${CIRCLE_SHA1}
       - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
           name: Create deployment request for prod
-          command: deployment-cli deploy create --environment=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --config=config-prod.json --team=teamdokumenthandtering -r=naiserator.yaml --version=${CIRCLE_SHA1}
+          command: deployment-cli deploy create --environment=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --config=config-prod.json --team=integrasjon -r=naiserator.yaml --version=${CIRCLE_SHA1}
 workflows:
   version: 2
   build_and_deploy:

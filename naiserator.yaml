@@ -4,10 +4,9 @@ metadata:
   name: integrasjonspunkt-difi-nais
   namespace: default
   labels:
-    team: teamdokumenthandtering
+    team: integrasjon
 spec:
-  image: "repo.adeo.no:5443/integrasjonspunkt-difi-nais/integrasjonspunkt-difi-nais:{{version}}"
-  team: teamdokumenthandtering
+  image: "navikt/integrasjonspunkt-difi-nais:{{version}}"
   replicas:
     min: 1
     max: 1
