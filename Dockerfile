@@ -32,5 +32,6 @@ COPY logback-spring.xml /app
 COPY config-dev.properties /app
 COPY config-prod.properties /app
 COPY 10-inject-keystore-credentials.sh /init-scripts
+COPY 20-decode-virkcert.sh /init-scripts
 
 WORKDIR /app

@@ -1,4 +1,4 @@
 {
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/prod/sdp",
-    "LOCAL_CONFIG_FILE_NAME": "/app/config-prod.properties"
+    "LOCAL_CONFIG_PATH": "file:./prod/"
 }
