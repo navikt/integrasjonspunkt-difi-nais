@@ -26,6 +26,7 @@ spec:
     path: /prometheus
   vault:
     enabled: true
+    sidecar: true
     paths:
       - kvPath: {{VIRKSOMHETSSERTIFIKAT_VAULT_PATH}}
         mountPath: /var/run/secrets/nais.io/virksomhetssertifikat
