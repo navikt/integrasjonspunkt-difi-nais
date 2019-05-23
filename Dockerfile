@@ -1,4 +1,4 @@
-FROM navikt/java:11
+FROM navikt/java:8
 
 EXPOSE 8080
 
@@ -17,8 +17,8 @@ RUN apt install jq -y
 #ENV JAVA_LOGG_OVERRIDE='-Dlogging.level.org.springframework.ws.client.MessageTracing=DEBUG -Dlogging.level.org.springframework.ws.server.MessageTracing=DEBUG -Dlogging.level.mf.logger.translog=DEBUG -Dlogging.level.no.difi.sdp.client2.internal.DigipostMessageSenderFacade=DEBUG'
 #ENV JAVA_LOGG_OVERRIDE='-Dlogging.level=DEBUG'
 
-ENV RUNTIME_OPTS 'no.difi.meldingsutveksling.IntegrasjonspunktApplication --spring.profiles.active=${APP_PROFILE}'
 ENV APP_PROFILE staging
+ENV RUNTIME_OPTS 'no.difi.meldingsutveksling.IntegrasjonspunktApplication --spring.profiles.active=${APP_PROFILE}'
 ENV SPRING_CLOUD_CONFIG_ENABLED true
 ENV SERVER_PORT 8080
 ENV ENDPOINTS_ENABLED=true
