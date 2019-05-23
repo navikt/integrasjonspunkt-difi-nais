@@ -29,8 +29,8 @@ ENV ENDPOINTS_INFO_ENABLED=true
 
 COPY integrasjonspunkt.jar /app/app.jar
 COPY logback-spring.xml /app
-COPY config-dev.properties /app
-COPY config-prod.properties /app
+COPY dev/ dev/
+COPY prod/ prod/
 COPY 10-inject-keystore-credentials.sh /init-scripts
 COPY 20-decode-virkcert.sh /init-scripts
 
