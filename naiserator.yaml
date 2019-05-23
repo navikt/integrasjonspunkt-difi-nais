@@ -38,5 +38,5 @@ spec:
       memory: 1024Mi
   webproxy: true
   env:
-    - name: SPRING_CONFIG_ADDITIONAL_LOCATION
+    - name: SPRING_CONFIG_LOCATION
       value: {{LOCAL_CONFIG_PATH}}
