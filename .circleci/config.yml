@@ -11,7 +11,7 @@ jobs:
           command: curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/service/local/repositories/releases/content/no/difi/meldingsutveksling/${APPLICATION_NAME}/$EXTERNAL_APP_VERSION/$APPLICATION_NAME-$EXTERNAL_APP_VERSION.jar
           environment:
             APPLICATION_NAME: integrasjonspunkt
-            EXTERNAL_APP_VERSION: 1.7.94
+            EXTERNAL_APP_VERSION: 1.7.96
       - run:
           name: Build docker image
           command: docker build -t navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1} .
