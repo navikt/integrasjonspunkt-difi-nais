@@ -18,7 +18,7 @@ RUN apt install jq -y
 #ENV JAVA_LOGG_OVERRIDE='-Dlogging.level=DEBUG'
 
 ENV APP_PROFILE staging
-ENV RUNTIME_OPTS 'no.difi.meldingsutveksling.IntegrasjonspunktApplication --spring.profiles.active=${APP_PROFILE}'
+ENV RUNTIME_OPTS '--logging.config=/app/logback.xml no.difi.meldingsutveksling.IntegrasjonspunktApplication --spring.profiles.active=${APP_PROFILE}'
 ENV SPRING_CLOUD_CONFIG_ENABLED true
 ENV SERVER_PORT 8080
 ENV ENDPOINTS_ENABLED=true
@@ -27,6 +27,7 @@ ENV ENDPOINTS_HEALTH_ENABLED=true
 ENV ENDPOINTS_INFO_ENABLED=true
 #ENV SPRING_DATASOURCE_URL=jdbc:postgresql://tpa-move-integrasjonspunkt-postgresql.tpa/move_db
 
+COPY logback.xml /app
 COPY integrasjonspunkt.jar /app/app.jar
 COPY logback-spring.xml /app
 COPY dev/ dev/
