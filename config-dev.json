@@ -1,4 +1,7 @@
 {
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
-    "LOCAL_CONFIG_PATH": "file:./dev/"
+    "env": {
+        "SPRING_CONFIG_LOCATION": "file:./dev/",
+        "DIFI_MOVE_FEATURE_ENABLEDPE": false
+    }
 }
