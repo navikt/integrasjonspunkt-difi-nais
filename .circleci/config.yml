@@ -8,10 +8,10 @@ jobs:
       - setup_remote_docker
       - run:
           name: Download move integration point jar
-          command: curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/service/local/repositories/releases/content/no/difi/meldingsutveksling/${APPLICATION_NAME}/$EXTERNAL_APP_VERSION/$APPLICATION_NAME-$EXTERNAL_APP_VERSION.jar
+          command: curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/content/repositories/nextmove/no/difi/meldingsutveksling/nextmove/1.7.98-SNAPSHOT/nextmove-1.7.98-20190619.111344-11.jar
           environment:
-            APPLICATION_NAME: integrasjonspunkt
-            EXTERNAL_APP_VERSION: 1.7.96
+      #            APPLICATION_NAME: integrasjonspunkt
+      #            EXTERNAL_APP_VERSION: 1.7.96
       - run:
           name: Build docker image
           command: docker build -t navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1} .
@@ -22,10 +22,10 @@ jobs:
             docker push navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1}
       - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
           name: Create deployment request for development
-          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-dev.json --team=integrasjon -r=naiserator.yaml --version=${CIRCLE_SHA1}
+          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-dev.json --team=teamdokumenthaandtering -r=naiserator.yaml --version=${CIRCLE_SHA1}
       - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
           name: Create deployment request for prod
-          command: deployment-cli deploy create --cluster=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-prod.json --team=integrasjon -r=naiserator.yaml --version=${CIRCLE_SHA1}
+          command: deployment-cli deploy create --cluster=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-prod.json --team=teamdokumenthaandtering -r=naiserator.yaml --version=${CIRCLE_SHA1}
 workflows:
   version: 2
   build_and_deploy:
