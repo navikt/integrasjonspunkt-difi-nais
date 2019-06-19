@@ -4,7 +4,7 @@ metadata:
   name: integrasjonspunkt
   namespace: default
   labels:
-    team: integrasjon
+    team: dokument-eformidling
 spec:
   image: "navikt/integrasjonspunkt-difi-nais:{{version}}"
   replicas:
