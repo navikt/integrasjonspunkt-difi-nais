@@ -8,7 +8,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Download move integration point jar
-          command: curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/content/repositories/nextmove/no/difi/meldingsutveksling/nextmove/1.7.98-SNAPSHOT/nextmove-1.7.98-20190619.111344-11.jar
+          command: curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/content/repositories/nextmove/no/difi/meldingsutveksling/integrasjonspunkt/1.7.98-SNAPSHOT/integrasjonspunkt-1.7.98-20190613.105213-1.jar
           environment:
       #            APPLICATION_NAME: integrasjonspunkt
       #            EXTERNAL_APP_VERSION: 1.7.96
