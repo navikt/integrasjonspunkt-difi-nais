@@ -3,6 +3,7 @@
     "env": {
         "SPRING_CONFIG_LOCATION": "file:./dev/",
         "DIFI_MOVE_FEATURE_ENABLEDPE": false,
+        "DIFI_MOVE_FEATURE_ENABLEDPO": false,
         "DIFI_MOVE_NOARKSYSTEM_TYPE": "websak"
     }
 }
