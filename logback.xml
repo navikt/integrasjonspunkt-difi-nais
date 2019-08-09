@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="stdout_json" class="ch.qos.logback.core.ConsoleAppender">
+    <!--<appender name="stdout_json" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider" />
         </encoder>
-    </appender>
+    </appender>-->
 
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -17,8 +17,8 @@
         <appender-ref ref="CONSOLE" />
     </root>
 
-    <root level="INFO">
+    <!--<root level="INFO">
         <appender-ref ref="stdout_json" />
-    </root>
+    </root>-->
 
 </configuration>
