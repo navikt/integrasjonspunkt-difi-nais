@@ -18,8 +18,8 @@ RUN apt install jq -y
 #ENV JAVA_LOGG_OVERRIDE='-Dlogging.level=DEBUG'
 
 ENV APP_PROFILE staging
-#ENV RUNTIME_OPTS '--logging.config=/app/logback.xml --spring.profiles.active=${APP_PROFILE}'
-ENV RUNTIME_OPTS='--spring.profiles.active=${APP_PROFILE}'
+ENV RUNTIME_OPTS '--logging.config=/app/logback.xml --spring.profiles.active=${APP_PROFILE}'
+#ENV RUNTIME_OPTS='--spring.profiles.active=${APP_PROFILE}'
 ENV SPRING_CLOUD_CONFIG_ENABLED true
 ENV SERVER_PORT 8080
 ENV ENDPOINTS_ENABLED=true
