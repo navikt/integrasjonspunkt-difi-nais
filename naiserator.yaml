@@ -2,7 +2,7 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: integrasjonspunkt
-  namespace: q1
+  namespace: default
   labels:
     team: {{ team }}
 spec:
@@ -25,7 +25,7 @@ spec:
     enabled: false
     path: /prometheus
   ingresses:
-     - "https://integrasjonspunkt-q1.nais.preprod.local"
+     - "https://integrasjonspunkt.nais.preprod.local"
   vault:
     enabled: true
     paths:
