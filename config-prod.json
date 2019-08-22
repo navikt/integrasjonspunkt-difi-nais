@@ -1,4 +1,5 @@
 {
+    "INGRESS": "https://integrasjonspunkt.nais.adeo.no",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/prod/sdp",
     "env": {
         "SPRING_CONFIG_LOCATION": "file:./prod/",

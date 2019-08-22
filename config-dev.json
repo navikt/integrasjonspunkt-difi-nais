@@ -1,4 +1,5 @@
 {
+    "INGRESS": "https://integrasjonspunkt.nais.preprod.local",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
     "env": {
         "SPRING_CONFIG_ADDITIONAL_LOCATION": "file:./dev/",
