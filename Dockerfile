@@ -27,6 +27,8 @@ ENV ENDPOINTS_ENABLED=true
 ENV ENDPOINTS_HEALTH_ENABLED=true
 ENV ENDPOINTS_INFO_ENABLED=true
 #ENV SPRING_DATASOURCE_URL=jdbc:postgresql://tpa-move-integrasjonspunkt-postgresql.tpa/move_db
+ENV JAVA_OPTS="-Dhttps.proxySet=true \
+               -Dhttp.proxySet=true"
 
 COPY logback.xml /app
 COPY integrasjonspunkt.jar /app/app.jar
