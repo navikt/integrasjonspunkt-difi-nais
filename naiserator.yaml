@@ -28,6 +28,7 @@ spec:
      - {{INGRESS}}
   vault:
     enabled: true
+    sidecar: true
     paths:
       - kvPath: {{VIRKSOMHETSSERTIFIKAT_VAULT_PATH}}
         mountPath: /var/run/secrets/nais.io/virksomhetssertifikat
@@ -38,7 +39,6 @@ spec:
     requests:
       cpu: 100m
       memory: 1024Mi
-  sidecar: true
   webproxy: true
   env:
   {{#each env}}
