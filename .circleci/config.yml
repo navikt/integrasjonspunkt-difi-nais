@@ -1,11 +1,12 @@
 version: 2.1
 jobs:
   build:
-    working_directory: spring-datasource-hikari-vault/
+    working_directory: ~/integrasjonspunkt-difi-nais/spring-datasource-hikari-vault/
     docker:
       - image: "circleci/openjdk:11-jdk"
     steps:
-      - checkout
+      - checkout:
+          path: ~/integrasjonspunkt-difi-nais
       - run:
           name: Build code for overriding database configuration
           command: mvn clean package dependency:copy
