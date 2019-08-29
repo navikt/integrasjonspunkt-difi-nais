@@ -19,7 +19,7 @@
 	</root>
 
 	<root level="INFO">
-		<appender-ref ref="stdout_json"/>
+<!--		<appender-ref ref="stdout_json"/>-->
 	</root>
 
 </configuration>
