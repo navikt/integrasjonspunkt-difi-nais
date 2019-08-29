@@ -1,17 +1,29 @@
-version: 2
+version: 2.1
 jobs:
+  build:
+    working_directory: spring-datasource-hikari-vault/
+    docker:
+      - image: "circleci/openjdk:11-jdk"
+    steps:
+      - checkout
+      - run:
+          name: Build code for overriding database configuration
+          command: mvn clean package dependency:copy
+      - run:
+          name: Patch integrasjonspunkt jar file
+          command: ./patch.sh
+      - persist_to_workspace:
+          root: workdir
+          paths:
+            - app.jar
   deploy:
     docker:
       - image: "navikt/deployment-cli:v0.2.0"
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Download move integration point jar
-          command: curl -o integrasjonspunkt.jar https://beta-meldingsutveksling.difi.no/content/repositories/itest/no/difi/meldingsutveksling/integrasjonspunkt/2.0.0-SNAPSHOT/integrasjonspunkt-2.0.0-20190823.135322-5.jar
-          environment:
-      #            APPLICATION_NAME: integrasjonspunkt
-      #            EXTERNAL_APP_VERSION: 1.7.96
+      - attach_workspace:
+          at: workdir
       - run:
           name: Build docker image
           command: docker build -t navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1} .

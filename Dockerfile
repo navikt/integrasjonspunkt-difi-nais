@@ -30,7 +30,7 @@ ENV ENDPOINTS_INFO_ENABLED=true
 ENV JAVA_OPTS="-XX:MaxRAMPercentage=75"
 
 COPY logback.xml /app
-COPY integrasjonspunkt.jar /app/app.jar
+COPY workdir/app.jar /app/app.jar
 COPY logback-spring.xml /app
 COPY dev/integrasjonspunkt-local.properties /app
 COPY prod/ prod/
