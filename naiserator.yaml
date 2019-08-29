@@ -12,12 +12,12 @@ spec:
     max: 1
   port: 8080
   liveness:
-    path: /swagger-ui.html#
+    path: /manage
     initialDelay: 20
     periodSeconds: 5
     failureThreshold: 10
   readiness:
-    path: /swagger-ui.html#
+    path: /manage/health
     initialDelay: 20
     periodSeconds: 5
     failureThreshold: 10
