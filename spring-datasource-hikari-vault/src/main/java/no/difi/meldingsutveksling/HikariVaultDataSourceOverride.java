@@ -2,11 +2,11 @@ package no.difi.meldingsutveksling;
 
 import com.zaxxer.hikari.HikariDataSource;
 import no.difi.meldingsutveksling.properties.DatabaseProperties;
-import org.hibernate.SessionFactory;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
 
@@ -29,11 +29,12 @@ public class HikariVaultDataSourceOverride {
     }
 
     @Bean
-    public SessionFactory sessionFactory(DataSource dataSource) {
-        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-        sessionFactoryBean.setDataSource(dataSource);
-
-        return sessionFactoryBean.getObject();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactory.setDataSource(dataSource);
+        entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactory.setPackagesToScan("no.difi.meldingsutveksling");
+        return entityManagerFactory;
     }
 
     @LiquibaseDataSource
