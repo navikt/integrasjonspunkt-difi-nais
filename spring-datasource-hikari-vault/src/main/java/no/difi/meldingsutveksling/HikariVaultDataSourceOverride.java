@@ -3,8 +3,13 @@ package no.difi.meldingsutveksling;
 import com.zaxxer.hikari.HikariDataSource;
 import no.difi.meldingsutveksling.properties.DatabaseProperties;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
@@ -23,18 +28,24 @@ public class HikariVaultDataSourceOverride {
         this.vaultHelper = vaultHelper;
     }
 
+    @Primary
     @Bean
     public DataSource dataSource() throws Exception {
         return createDataSource(ROLE_USER);
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setDataSource(dataSource);
-        entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactory.setPackagesToScan("no.difi.meldingsutveksling");
-        return entityManagerFactory;
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            DataSource dataSource, JpaProperties jpaProperties,
+            HibernateProperties hibernateProperties,
+            HibernateSettings hibernateSettings
+    ) {
+        return builder
+                .dataSource(dataSource)
+                .packages("no.difi.meldingsutveksling")
+                .properties(hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), hibernateSettings))
+                .build();
     }
 
     @LiquibaseDataSource
