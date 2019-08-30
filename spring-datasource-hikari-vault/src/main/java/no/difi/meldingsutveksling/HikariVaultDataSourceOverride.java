@@ -49,6 +49,8 @@ public class HikariVaultDataSourceOverride {
         VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), role);
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(databaseProperties.getUrl());
+        System.out.println("DB username " + credentials.username);
+        System.out.println("DB has password" + (credentials.password != null));
         dataSource.getHikariConfigMXBean().setUsername(credentials.username);
         dataSource.getHikariConfigMXBean().setPassword(credentials.password);
         dataSource.validate();
