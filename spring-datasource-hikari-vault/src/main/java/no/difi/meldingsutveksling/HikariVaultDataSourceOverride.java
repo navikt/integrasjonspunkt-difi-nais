@@ -32,8 +32,10 @@ public class HikariVaultDataSourceOverride {
 
     @Primary
     @Bean
-    public DataSource dataSource() throws Exception {
-        return createDataSource(ROLE_USER);
+    public DataSource dataSource() throws Exception { // TODO: Hacky workaround, use admin for write to schemas
+        HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
+        dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
+        return dataSource;
     }
 
     @Bean
