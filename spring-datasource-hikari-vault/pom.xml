@@ -66,6 +66,10 @@
                             <groupId>org.postgresql</groupId>
                             <artifactId>postgresql</artifactId>
                         </dependency>
+                        <dependency>
+                            <groupId>no.difi.meldingsutveksling</groupId>
+                            <artifactId>integrasjonspunkt</artifactId>
+                        </dependency>
                     </artifactItems>
                 </configuration>
             </plugin>

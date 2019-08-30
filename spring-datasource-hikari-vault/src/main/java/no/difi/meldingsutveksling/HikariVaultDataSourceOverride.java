@@ -2,15 +2,15 @@ package no.difi.meldingsutveksling;
 
 import com.zaxxer.hikari.HikariDataSource;
 import no.difi.meldingsutveksling.properties.DatabaseProperties;
+import org.hibernate.SessionFactory;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 
 @Configuration
-@Primary
 public class HikariVaultDataSourceOverride {
     static final String ROLE_USER = "user";
     private static final String ROLE_ADMIN = "admin";
@@ -26,6 +26,14 @@ public class HikariVaultDataSourceOverride {
     @Bean
     public DataSource dataSource() throws Exception {
         return createDataSource(ROLE_USER);
+    }
+
+    @Bean
+    public SessionFactory sessionFactory(DataSource dataSource) {
+        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+
+        return sessionFactoryBean.getObject();
     }
 
     @LiquibaseDataSource
