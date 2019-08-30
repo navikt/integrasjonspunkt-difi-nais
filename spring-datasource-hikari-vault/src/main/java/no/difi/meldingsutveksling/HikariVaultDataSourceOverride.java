@@ -42,7 +42,7 @@ public class HikariVaultDataSourceOverride {
     public DataSource liquibaseDataSource() throws Exception {
         HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
         dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
-        return createDataSource(ROLE_ADMIN);
+        return dataSource;
     }
 
     private HikariDataSource createDataSource(String role) throws Exception {
