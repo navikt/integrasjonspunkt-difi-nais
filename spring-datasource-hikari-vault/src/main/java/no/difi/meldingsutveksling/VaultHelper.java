@@ -27,7 +27,9 @@ public class VaultHelper {
                 .build());
     }
     DatasourceCredentials fetchCredentials(String dbName, String role) throws VaultException {
-        LogicalResponse credentials = vault.logical().read(String.format("%s/%s-%s", vaultProperties.getKvPath(), dbName, role));
+        String vaultPath = String.format("%s/%s-%s", vaultProperties.getKvPath(), dbName, role);
+        System.out.println("Vault path: " + vaultPath);
+        LogicalResponse credentials = vault.logical().read(vaultPath);
 
         return new DatasourceCredentials(credentials.getData().get("username"), credentials.getData().get("password"));
     }
