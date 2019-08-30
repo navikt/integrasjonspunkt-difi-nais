@@ -51,7 +51,6 @@ public class HikariVaultDataSourceOverride {
         dataSource.setJdbcUrl(databaseProperties.getUrl());
         dataSource.getHikariConfigMXBean().setUsername(credentials.username);
         dataSource.getHikariConfigMXBean().setPassword(credentials.password);
-        dataSource.getHikariPoolMXBean().softEvictConnections();
         dataSource.validate();
         return dataSource;
     }

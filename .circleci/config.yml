@@ -9,7 +9,7 @@ jobs:
           path: ~/integrasjonspunkt-difi-nais
       - restore_cache:
           keys:
-            - maven-cache-repository-{{ checksum "spring-datasource-hikari-vault/pom.xml" }}
+            - maven-cache-repository-{{ checksum "pom.xml" }}
             - maven-cache-repository
       - run:
           name: Build code for overriding database configuration
@@ -17,7 +17,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2/repository
-          key: maven-cache-repository-{{ checksum "spring-datasource-hikari-vault/pom.xml" }}
+          key: maven-cache-repository-{{ checksum "pom.xml" }}
       - run:
           name: Patch integrasjonspunkt jar file
           command: ./patch.sh
