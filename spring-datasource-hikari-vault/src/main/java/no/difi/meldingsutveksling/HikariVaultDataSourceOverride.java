@@ -14,6 +14,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Properties;
 
 @Configuration
 public class HikariVaultDataSourceOverride {
@@ -37,14 +39,18 @@ public class HikariVaultDataSourceOverride {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder,
-            DataSource dataSource, JpaProperties jpaProperties,
-            HibernateProperties hibernateProperties,
-            HibernateSettings hibernateSettings
+            DataSource dataSource
     ) {
+        HashMap<String, String> hibernateProperties = new HashMap<>();
+
+        hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        hibernateProperties.put("hibernate.show_sql", "true");
+
         return builder
                 .dataSource(dataSource)
                 .packages("no.difi.meldingsutveksling")
-                .properties(hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), hibernateSettings))
+                .properties(hibernateProperties)
                 .build();
     }
 
