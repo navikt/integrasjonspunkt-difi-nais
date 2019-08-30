@@ -20,7 +20,7 @@ import java.util.Properties;
 @Configuration
 public class HikariVaultDataSourceOverride {
     static final String ROLE_USER = "user";
-    private static final String ROLE_ADMIN = "admin";
+    static final String ROLE_ADMIN = "admin";
 
     private final DatabaseProperties databaseProperties;
     private final VaultHelper vaultHelper;

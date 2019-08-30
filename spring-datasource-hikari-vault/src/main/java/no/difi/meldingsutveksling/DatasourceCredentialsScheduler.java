@@ -22,7 +22,7 @@ public class DatasourceCredentialsScheduler {
 
     @Scheduled(fixedDelay = 30*60*1000)
     public void updateDataSourceCredentials() throws Exception {
-        VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), HikariVaultDataSourceOverride.ROLE_USER);
+        VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), HikariVaultDataSourceOverride.ROLE_ADMIN);
         dataSource.getHikariConfigMXBean().setUsername(credentials.username);
         dataSource.getHikariConfigMXBean().setPassword(credentials.password);
         dataSource.getHikariPoolMXBean().softEvictConnections();
