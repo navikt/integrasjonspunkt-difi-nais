@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "no.nav.db")
+@EnableScheduling
 public class DatabaseProperties {
     private String name;
     private String url;
