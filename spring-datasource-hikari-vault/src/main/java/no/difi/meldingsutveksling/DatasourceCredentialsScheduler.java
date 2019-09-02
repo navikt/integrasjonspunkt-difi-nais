@@ -20,12 +20,11 @@ public class DatasourceCredentialsScheduler {
         this.databaseProperties = databaseProperties;
     }
 
-    @Scheduled(fixedDelay = 60*1000)
+    @Scheduled(fixedDelay = 30*60*1000)
     public void updateDataSourceCredentials() throws Exception {
         VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), HikariVaultDataSourceOverride.ROLE_ADMIN);
         dataSource.getHikariConfigMXBean().setUsername(credentials.username);
         dataSource.getHikariConfigMXBean().setPassword(credentials.password);
         dataSource.getHikariPoolMXBean().softEvictConnections();
-        System.out.println("Scheduled job finished updating DS credentials");
     }
 }

@@ -47,7 +47,7 @@ public class HikariVaultDataSourceOverride {
 
         hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        hibernateProperties.put("hibernate.show_sql", "true");
+//        hibernateProperties.put("hibernate.show_sql", "true"); Enable logging
 
         return builder
                 .dataSource(dataSource)
@@ -68,8 +68,6 @@ public class HikariVaultDataSourceOverride {
         VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), role);
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(databaseProperties.getUrl());
-        System.out.println("DB username " + credentials.username);
-        System.out.println("DB has password " + (credentials.password != null));
         dataSource.getHikariConfigMXBean().setUsername(credentials.username);
         dataSource.getHikariConfigMXBean().setPassword(credentials.password);
         dataSource.validate();
