@@ -20,7 +20,7 @@ public class VaultHelper {
         this.vaultProperties = vaultProperties;
         vault = new Vault(new VaultConfig()
                 .address(vaultProperties.getUrl())
-                .token(Files.readString(Paths.get(vaultProperties.getTokenPath())))
+                .token(new String(Files.readAllBytes((Paths.get(vaultProperties.getTokenPath())))))
                 .openTimeout(5)
                 .readTimeout(30)
                 .sslConfig(new SslConfig().build())
