@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/integrasjonspunkt-difi-nais/spring-datasource-hikari-vault/
     docker:
-      - image: "circleci/openjdk:11-jdk"
+      - image: "circleci/openjdk:8-jdk"
     steps:
       - checkout:
           path: ~/integrasjonspunkt-difi-nais
