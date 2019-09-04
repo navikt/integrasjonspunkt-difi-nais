@@ -2,7 +2,15 @@
 <configuration>
 	<appender name="stdout_json" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
-			<provider class="net.logstash.logback.composite.loggingevent.ArgumentsJsonProvider"/>
+			<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+				<maxDepthPerThrowable>30</maxDepthPerThrowable>
+				<exclude>java\.util\.concurrent\..*</exclude>
+				<exclude>org\.apache\.tomcat\..*</exclude>
+				<exclude>org\.apache\.coyote\..*</exclude>
+				<exclude>org\.apache\.catalina\..*</exclude>
+				<exclude>org\.springframework\.web\..*</exclude>
+				<exclude>sun\.net\.www\..*</exclude>
+			</throwableConverter>
 		</encoder>
 	</appender>
 
@@ -16,10 +24,7 @@
 
 	<root level="DEBUG">
 		<appender-ref ref="CONSOLE"/>
-	</root>
-
-	<root level="INFO">
-<!--		<appender-ref ref="stdout_json"/>-->
+		<appender-ref ref="stdout_json"/>
 	</root>
 
 </configuration>

@@ -17,9 +17,7 @@ ENV RUNTIME_OPTS '--logging.config=/app/logback.xml'
 
 COPY logback.xml /app
 COPY workdir/app.jar /app/app.jar
-COPY logback-spring.xml /app
-COPY dev/integrasjonspunkt-local.properties /app
-COPY prod/ prod/
+COPY integrasjonspunkt-local.properties /app
 COPY 10-inject-keystore-credentials.sh /init-scripts
 COPY 20-decode-virkcert.sh /init-scripts
 

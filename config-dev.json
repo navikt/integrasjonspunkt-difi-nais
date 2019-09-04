@@ -2,9 +2,7 @@
     "INGRESS": "https://integrasjonspunkt.nais.preprod.local",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
     "env": {
-        "DIFI_MOVE_FEATURE_ENABLEDPE": false,
-        "DIFI_MOVE_FEATURE_ENABLEDPO": false,
-        "DIFI_MOVE_NOARKSYSTEM_TYPE": "websak",
+        "SPRING_PROFILES_ACTIVE": "staging",
         "NO_NAV_VAULT_KV_PATH": "/postgresql/preprod-fss/creds",
         "NO_NAV_DB_NAME": "integrasjonspunkt",
         "NO_NAV_DB_URL": "jdbc:postgresql://b27dbvl007.preprod.local/integrasjonspunkt"
