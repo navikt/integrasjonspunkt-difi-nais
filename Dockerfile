@@ -13,23 +13,7 @@ ENV TZ="Europe/Oslo"
 
 RUN apt install jq -y
 
-# -Dlogback.configurationFile=/app/logback-spring.xml'
-#ENV JAVA_LOGG_OVERRIDE='-Dlogging.level.org.springframework.ws.client.MessageTracing=DEBUG -Dlogging.level.org.springframework.ws.server.MessageTracing=DEBUG -Dlogging.level.mf.logger.translog=DEBUG -Dlogging.level.no.difi.sdp.client2.internal.DigipostMessageSenderFacade=DEBUG'
-#ENV JAVA_LOGG_OVERRIDE='-Dlogging.level=DEBUG'
-
-ENV APP_PROFILE staging
-ENV RUNTIME_OPTS '--logging.config=/app/logback.xml --spring.profiles.active=${APP_PROFILE}'
-#ENV RUNTIME_OPTS='--spring.profiles.active=${APP_PROFILE}'
-ENV SPRING_CLOUD_CONFIG_ENABLED true
-ENV SERVER_PORT 8080
-ENV ENDPOINTS_ENABLED=true
-#ENV ENDPOINTS_HEALTH_SENSITIVE=true
-ENV ENDPOINTS_HEALTH_ENABLED=true
-ENV ENDPOINTS_INFO_ENABLED=true
-#ENV SPRING_DATASOURCE_URL=jdbc:postgresql://tpa-move-integrasjonspunkt-postgresql.tpa/move_db
-#ENV JAVA_OPTS="-XX:MaxRAMPercentage=75"
-
-ENV JAVA_OPTS="-Dhttps.proxySet=true -Dhttp.proxySet=true"
+ENV RUNTIME_OPTS '--logging.config=/app/logback.xml'
 
 COPY logback.xml /app
 COPY workdir/app.jar /app/app.jar
