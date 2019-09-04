@@ -5,6 +5,5 @@ mkdir -p workdir/BOOT-INF/lib
 cp target/dependency/*.jar workdir/BOOT-INF/lib/
 cp target/*.jar workdir/BOOT-INF/lib/
 cd workdir || exit 1
-wget -O app.jar https://beta-meldingsutveksling.difi.no/content/repositories/itest/no/difi/meldingsutveksling/integrasjonspunkt/2.0.0-SNAPSHOT/nextmove-2.0.0-20190904.082647-31.jar
-
+wget -O app.jar https://beta-meldingsutveksling.difi.no/content/repositories/itest/no/difi/meldingsutveksling/integrasjonspunkt/2.0.0-SNAPSHOT/integrasjonspunkt-2.0.0-20190904.082706-31.jar
 zip -r -0 app.jar BOOT-INF/
