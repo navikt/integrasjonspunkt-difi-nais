@@ -13,33 +13,34 @@ import java.nio.file.Paths;
 
 @Component
 public class VaultHelper {
-    private final Vault vault;
-    private final VaultProperties vaultProperties;
+	private final Vault vault;
+	private final VaultProperties vaultProperties;
 
-    public VaultHelper(VaultProperties vaultProperties) throws Exception {
-        this.vaultProperties = vaultProperties;
-        vault = new Vault(new VaultConfig()
-                .address(vaultProperties.getUrl())
-                .token(new String(Files.readAllBytes((Paths.get(vaultProperties.getTokenPath())))))
-                .openTimeout(5)
-                .readTimeout(30)
-                .sslConfig(new SslConfig().build())
-                .build());
-    }
-    DatasourceCredentials fetchCredentials(String dbName, String role) throws VaultException {
-        String vaultPath = String.format("%s/%s-%s", vaultProperties.getKvPath(), dbName, role);
-        LogicalResponse credentials = vault.logical().read(vaultPath);
+	public VaultHelper(VaultProperties vaultProperties) throws Exception {
+		this.vaultProperties = vaultProperties;
+		vault = new Vault(new VaultConfig()
+				.address(vaultProperties.getUrl())
+				.token(new String(Files.readAllBytes((Paths.get(vaultProperties.getTokenPath())))))
+				.openTimeout(5)
+				.readTimeout(30)
+				.sslConfig(new SslConfig().build())
+				.build());
+	}
 
-        return new DatasourceCredentials(credentials.getData().get("username"), credentials.getData().get("password"));
-    }
+	DatasourceCredentials fetchCredentials(String dbName, String role) throws VaultException {
+		String vaultPath = String.format("%s/%s-%s", vaultProperties.getKvPath(), dbName, role);
+		LogicalResponse credentials = vault.logical().read(vaultPath);
 
-    static class DatasourceCredentials {
-        final String username;
-        final String password;
+		return new DatasourceCredentials(credentials.getData().get("username"), credentials.getData().get("password"));
+	}
 
-        DatasourceCredentials(String username, String password) {
-            this.username = username;
-            this.password = password;
-        }
-    }
+	static class DatasourceCredentials {
+		final String username;
+		final String password;
+
+		DatasourceCredentials(String username, String password) {
+			this.username = username;
+			this.password = password;
+		}
+	}
 }

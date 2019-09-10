@@ -31,7 +31,7 @@ public class HikariVaultDataSourceOverride {
     }
 
     @Primary
-    @Bean
+    @Bean("dataSource")
     public DataSource dataSource() throws Exception { // TODO: Hacky workaround, use admin for write to schemas
         HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
         dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
@@ -41,8 +41,7 @@ public class HikariVaultDataSourceOverride {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder,
-            DataSource dataSource
-    ) {
+            DataSource dataSource) {
         HashMap<String, String> hibernateProperties = new HashMap<>();
 
         hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
@@ -57,7 +56,7 @@ public class HikariVaultDataSourceOverride {
     }
 
     @LiquibaseDataSource
-    @Bean
+    @Bean("liquibaseDataSource")
     public DataSource liquibaseDataSource() throws Exception {
         HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
         dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
