@@ -22,7 +22,7 @@ public class VaultHelper {
 				.address(vaultProperties.getUrl())
 				.token(new String(Files.readAllBytes((Paths.get(vaultProperties.getTokenPath())))))
 				.openTimeout(5)
-				.readTimeout(30)
+				.readTimeout(60)
 				.sslConfig(new SslConfig().build())
 				.build());
 	}
