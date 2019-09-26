@@ -13,7 +13,7 @@ ENV TZ="Europe/Oslo"
 
 RUN apt install jq -y
 
-#ENV RUNTIME_OPTS '--logging.config=/app/logback.xml'
+ENV RUNTIME_OPTS '--logging.config=/app/logback.xml'
 
 COPY logback.xml /app
 COPY workdir/app.jar /app/app.jar
