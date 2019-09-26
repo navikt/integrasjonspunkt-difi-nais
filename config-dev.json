@@ -5,6 +5,7 @@
         "SPRING_PROFILES_ACTIVE": "staging",
         "NO_NAV_VAULT_KV_PATH": "/postgresql/preprod-fss/creds",
         "NO_NAV_DB_NAME": "integrasjonspunkt",
-        "NO_NAV_DB_URL": "jdbc:postgresql://b27dbvl007.preprod.local/integrasjonspunkt"
+        "NO_NAV_DB_URL": "jdbc:postgresql://b27dbvl007.preprod.local/integrasjonspunkt",
+        "APP_LOGGER_ENABLELOGSTASH": true
     }
 }
