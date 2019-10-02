@@ -1,11 +1,11 @@
 {
+    "NAMESPACE": "default",
     "INGRESS": "https://integrasjonspunkt.nais.adeo.no",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/prod/sdp",
     "env": {
         "SPRING_PROFILES_ACTIVE": "production",
         "NO_NAV_VAULT_KV_PATH": "/postgresql/prod-fss/creds",
         "NO_NAV_DB_NAME": "integrasjonspunkt",
-        "NO_NAV_DB_URL": "jdbc:postgresql://b27dbvl007.preprod.local/integrasjonspunkt",
-        "LOGGING_CONFIG": "/app/logback.xml"
+        "NO_NAV_DB_URL": "jdbc:postgresql://b27dbvl007.preprod.local/integrasjonspunkt"
     }
 }

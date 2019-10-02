@@ -1,6 +1,6 @@
 {
-    "NAMESPACE": "default",
-    "INGRESS": "https://integrasjonspunkt.nais.preprod.local",
+    "NAMESPACE": "q2",
+    "INGRESS": "https://integrasjonspunkt-q2.nais.preprod.local",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
     "env": {
         "SPRING_PROFILES_ACTIVE": "staging",
