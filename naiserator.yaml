@@ -32,7 +32,8 @@ spec:
     paths:
       - kvPath: {{VIRKSOMHETSSERTIFIKAT_VAULT_PATH}}
         mountPath: /var/run/secrets/nais.io/virksomhetssertifikat
-      - mountPath: /var/run/secrets/nais.io/vault
+      - kvPath: {{APPLICATION_VAULT_PATH}}
+        mountPath: /var/run/secrets/nais.io/vault
   resources:
     limits:
       cpu: 2000m

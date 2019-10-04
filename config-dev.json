@@ -2,6 +2,7 @@
     "NAMESPACE": "default",
     "INGRESS": "https://integrasjonspunkt.nais.preprod.local",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
+    "APPLICATION_VAULT_PATH": "/kv/preprod/fss/integrasjonspunkt/default",
     "env": {
         "SPRING_PROFILES_ACTIVE": "staging",
         "NO_NAV_VAULT_KV_PATH": "/postgresql/preprod-fss/creds",
