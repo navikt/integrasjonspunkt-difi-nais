@@ -47,9 +47,9 @@ jobs:
       - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
           name: Create deployment request for q2
           command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-q2.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
-      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
-          name: Create deployment request for prod
-          command: deployment-cli deploy create --cluster=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-prod.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
+#      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
+#          name: Create deployment request for prod
+#          command: deployment-cli deploy create --cluster=prod-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-prod.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
 workflows:
   version: 2
   build_and_deploy:
