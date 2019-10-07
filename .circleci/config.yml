@@ -29,7 +29,6 @@ jobs:
     machine: true
     steps:
       - checkout
-      - setup_remote_docker
       - attach_workspace:
           at: workdir
       - run:
