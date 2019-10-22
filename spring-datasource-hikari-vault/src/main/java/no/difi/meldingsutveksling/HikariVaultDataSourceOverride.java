@@ -63,6 +63,13 @@ public class HikariVaultDataSourceOverride {
         return dataSource;
     }
 
+	@Bean("jmsDataSource")
+	public DataSource jmsDataSource() throws Exception {
+		HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
+		dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
+		return dataSource;
+	}
+
     private HikariDataSource createDataSource(String role) throws Exception {
         VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), role);
         HikariDataSource dataSource = new HikariDataSource();
