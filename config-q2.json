@@ -1,7 +1,7 @@
 {
     "NAMESPACE": "q2",
     "INGRESS": "https://integrasjonspunkt-q2.nais.preprod.local",
-    "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/shared",
+    "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/preprod/sdp",
     "APPLICATION_VAULT_PATH": "/kv/preprod/fss/integrasjonspunkt/q2",
     "env": {
         "SPRING_PROFILES_ACTIVE": "staging",
