@@ -12,19 +12,16 @@ public class DatasourceCredentialsScheduler {
 	private final DatabaseProperties databaseProperties;
 	private final HikariDataSource dataSource;
 	private final HikariDataSource liquibaseDataSource;
-	private final HikariDataSource jmsDataSource;
 	private final VaultHelper vaultHelper;
 
 	public DatasourceCredentialsScheduler(
 			DatabaseProperties databaseProperties,
 			@Qualifier("dataSource") HikariDataSource dataSource,
 			@Qualifier("liquibaseDataSource") HikariDataSource liquibaseDataSource,
-			@Qualifier("jmsDataSource") HikariDataSource jmsDataSource,
 			VaultHelper vaultHelper
 	) {
 		this.dataSource = dataSource;
 		this.liquibaseDataSource = liquibaseDataSource;
-		this.jmsDataSource = jmsDataSource;
 		this.vaultHelper = vaultHelper;
 		this.databaseProperties = databaseProperties;
 	}
@@ -38,8 +35,5 @@ public class DatasourceCredentialsScheduler {
 		liquibaseDataSource.getHikariConfigMXBean().setUsername(credentials.username);
 		liquibaseDataSource.getHikariConfigMXBean().setPassword(credentials.password);
 		liquibaseDataSource.getHikariPoolMXBean().softEvictConnections();
-		jmsDataSource.getHikariConfigMXBean().setUsername(credentials.username);
-		jmsDataSource.getHikariConfigMXBean().setPassword(credentials.password);
-		jmsDataSource.getHikariPoolMXBean().softEvictConnections();
 	}
 }

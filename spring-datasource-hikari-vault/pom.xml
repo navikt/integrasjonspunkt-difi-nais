@@ -35,11 +35,6 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.6</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-jdbc-store</artifactId>
-            <version>5.15.9</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -74,10 +69,6 @@
                         <dependency>
                             <groupId>no.difi.meldingsutveksling</groupId>
                             <artifactId>integrasjonspunkt</artifactId>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.activemq</groupId>
-                            <artifactId>activemq-jdbc-store</artifactId>
                         </dependency>
                     </artifactItems>
                 </configuration>
