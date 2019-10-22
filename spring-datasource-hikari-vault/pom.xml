@@ -75,6 +75,10 @@
                             <groupId>no.difi.meldingsutveksling</groupId>
                             <artifactId>integrasjonspunkt</artifactId>
                         </dependency>
+                        <dependency>
+                            <groupId>org.apache.activemq</groupId>
+                            <artifactId>activemq-jdbc-store</artifactId>
+                        </dependency>
                     </artifactItems>
                 </configuration>
             </plugin>
