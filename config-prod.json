@@ -2,7 +2,6 @@
     "NAMESPACE": "default",
     "INGRESS": "https://integrasjonspunkt.nais.adeo.no",
     "VIRKSOMHETSSERTIFIKAT_VAULT_PATH": "/secret/virksomhetssertifikat/prod/sdp",
-    "APPLICATION_VAULT_PATH": "/kv/prod/fss/integrasjonspunkt/default",
     "env": {
         "SPRING_PROFILES_ACTIVE": "production",
         "NO_NAV_VAULT_KV_PATH": "/postgresql/prod-fss/creds",

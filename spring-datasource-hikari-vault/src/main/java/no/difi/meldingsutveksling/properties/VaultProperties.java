@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "no.nav.vault")
 public class VaultProperties {
     private String url = "https://vault.adeo.no";
-    //private String tokenPath = "/var/run/secrets/nais.io/virksomhetssertifikat/vault_token";
-	private String tokenPath = "/var/run/secrets/nais.io/vault/vault_token";
+    private String tokenPath = "/var/run/secrets/nais.io/virksomhetssertifikat/vault_token";
     private String kvPath;
 
     public String getTokenPath() { return tokenPath; }
