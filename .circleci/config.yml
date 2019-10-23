@@ -46,12 +46,12 @@ jobs:
       - checkout
       - attach_workspace:
           at: workdir
-#      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
-#          name: Create deployment request for development
-#          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-dev.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
       - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
-          name: Create deployment request for q2
-          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-q2.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
+          name: Create deployment request for development
+          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-dev.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
+#      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
+#          name: Create deployment request for q2
+#          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-q2.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
   deploy-prod:
     docker:
       - image: "navikt/deployment-cli:v0.2.0"
