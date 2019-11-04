@@ -32,6 +32,8 @@ spec:
     paths:
       - kvPath: {{VIRKSOMHETSSERTIFIKAT_VAULT_PATH}}
         mountPath: /var/run/secrets/nais.io/virksomhetssertifikat
+      - kvPath: /secret/dpo-eformidling-altinn
+        mountPath: /var/run/secrets/nais.io/dpo
   resources:
     limits:
       cpu: 2000m
