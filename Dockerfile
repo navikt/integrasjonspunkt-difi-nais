@@ -19,6 +19,7 @@ COPY logback.xml /app
 COPY workdir/app.jar /app/app.jar
 COPY integrasjonspunkt-local.properties /app
 COPY 10-inject-keystore-credentials.sh /init-scripts
+COPY 11-inject-dpo-credentials.sh /init-scripts
 COPY 20-decode-virkcert.sh /init-scripts
 
 WORKDIR /app
