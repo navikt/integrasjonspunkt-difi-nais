@@ -46,7 +46,7 @@ public class HikariVaultDataSourceOverride {
 
         hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-//        hibernateProperties.put("hibernate.show_sql", "true"); Enable logging
+        hibernateProperties.put("hibernate.show_sql", "true"); Enable logging
 
         return builder
                 .dataSource(dataSource)
@@ -62,6 +62,13 @@ public class HikariVaultDataSourceOverride {
         dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
         return dataSource;
     }
+
+	@Bean("jmsDataSource")
+	public DataSource jmsDataSource() throws Exception {
+		HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
+		dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
+		return dataSource;
+	}
 
     private HikariDataSource createDataSource(String role) throws Exception {
         VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), role);
