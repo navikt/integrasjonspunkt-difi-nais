@@ -73,6 +73,8 @@ public class HikariVaultDataSourceOverride {
     private HikariDataSource createDataSource(String role) throws Exception {
         VaultHelper.DatasourceCredentials credentials = vaultHelper.fetchCredentials(databaseProperties.getName(), role);
         HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setMinimumIdle(0);
+        dataSource.setMaximumPoolSize(2);
         dataSource.setJdbcUrl(databaseProperties.getUrl());
         dataSource.getHikariConfigMXBean().setUsername(credentials.username);
         dataSource.getHikariConfigMXBean().setPassword(credentials.password);
