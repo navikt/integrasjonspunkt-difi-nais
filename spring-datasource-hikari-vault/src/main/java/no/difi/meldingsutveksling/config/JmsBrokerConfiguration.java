@@ -19,7 +19,7 @@ public class JmsBrokerConfiguration {
 	public BrokerService broker(@Qualifier("jmsDataSource") DataSource jmsDataSource,
 								ActiveMQProperties activeMQProperties) throws Exception {
 		final BrokerService broker = new BrokerService();
-		broker.addConnector("vm://internal");
+		broker.addConnector("vm://localhost");
 		broker.setPersistent(true);
 		JDBCPersistenceAdapter persistenceAdapter = new JDBCPersistenceAdapter();
 		persistenceAdapter.setAdapter(new PostgresqlJDBCAdapter());
