@@ -67,6 +67,7 @@ public class HikariVaultDataSourceOverride {
 	public DataSource jmsDataSource() throws Exception {
 		HikariDataSource dataSource = createDataSource(ROLE_ADMIN);
 		dataSource.setConnectionInitSql(String.format("SET ROLE \"%s-%s\"", databaseProperties.getName(), ROLE_ADMIN));
+		dataSource.setLeakDetectionThreshold(60 * 1000);
 		return dataSource;
 	}
 
