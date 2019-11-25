@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/integrasjonspunkt-difi-nais/spring-datasource-hikari-vault/
+    working_directory: ~/integrasjonspunkt-difi-nais
     docker:
       - image: "circleci/openjdk:8-jdk"
     steps:
@@ -13,16 +13,16 @@ jobs:
             - maven-cache-repository
       - run:
           name: Build code for overriding database configuration
-          command: mvn clean package dependency:copy
+          command: mvn clean package && mvn --projects spring-datasource-hikari-vault dependency:copy
       - save_cache:
           paths:
             - ~/.m2/repository
           key: maven-cache-repository-{{ checksum "pom.xml" }}
       - run:
           name: Patch integrasjonspunkt jar file
-          command: ./patch.sh
+          command: (cd spring-datasource-hikari-vault; ./patch.sh)
       - persist_to_workspace:
-          root: workdir
+          root: spring-datasource-hikari-vault/workdir
           paths:
             - app.jar
   build-and-push-docker:
