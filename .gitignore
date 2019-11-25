@@ -1,2 +1,10 @@
-.idea/
-/*.jar
+**/target/
+**/*.iml
+**/.idea/
+**/*.jar
+**/*.db
+**/*-logs/
+**/.project
+**/.classpath
+**/.settings
+
