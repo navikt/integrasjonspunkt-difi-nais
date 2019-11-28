@@ -13,6 +13,9 @@ import java.nio.file.Paths;
 
 @Component
 public class VaultHelper {
+	private static final int MAX_RETRIES = 5;
+	private static final int RETRY_INTERVAL_MS = 60 * 1000;
+
 	private final Vault vault;
 	private final VaultProperties vaultProperties;
 
@@ -29,7 +32,7 @@ public class VaultHelper {
 
 	DatasourceCredentials fetchCredentials(String dbName, String role) throws VaultException {
 		String vaultPath = String.format("%s/%s-%s", vaultProperties.getKvPath(), dbName, role);
-		LogicalResponse credentials = vault.logical().read(vaultPath);
+		LogicalResponse credentials = vault.withRetries(MAX_RETRIES, RETRY_INTERVAL_MS).logical().read(vaultPath);
 
 		return new DatasourceCredentials(credentials.getData().get("username"), credentials.getData().get("password"));
 	}
