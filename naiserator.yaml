@@ -23,7 +23,7 @@ spec:
     failureThreshold: 10
   prometheus:
     enabled: true
-    path: /prometheus
+    path: /manage/prometheus
   ingresses:
      - {{INGRESS}}
   vault:

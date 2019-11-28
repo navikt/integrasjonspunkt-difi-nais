@@ -39,16 +39,16 @@ jobs:
           command: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
             docker push navikt/integrasjonspunkt-difi-nais:${CIRCLE_SHA1}
-  deploy-dev:
-    docker:
-      - image: "navikt/deployment-cli:v0.2.0"
-    steps:
-      - checkout
-      - attach_workspace:
-          at: workdir
-      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
-          name: Create deployment request for development
-          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-dev.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
+#  deploy-dev:
+#    docker:
+#      - image: "navikt/deployment-cli:v0.2.0"
+#    steps:
+#      - checkout
+#      - attach_workspace:
+#          at: workdir
+#      - run: # Username and password is set through $DEPLOYMENT_USERNAME and $DEPLOYMENT_PASSWORD
+#          name: Create deployment request for development
+#          command: deployment-cli deploy create --cluster=dev-fss --repository=navikt/integrasjonspunkt-difi-nais --vars=config-dev.json --team=dokumenteformidling -r=naiserator.yaml --version=${CIRCLE_SHA1}
   deploy-prod:
     docker:
       - image: "navikt/deployment-cli:v0.2.0"
@@ -70,13 +70,14 @@ workflows:
       - build-and-push-docker:
           requires:
             - build
-      - deploy-dev:
-          requires:
-            - build-and-push-docker
+#      - deploy-dev:
+#          requires:
+#            - build-and-push-docker
       - await-approval-prod:
           type: approval
           requires:
-            - deploy-dev
+            - build-and-push-docker
+#            - deploy-dev
       - deploy-prod:
           requires:
             - await-approval-prod
