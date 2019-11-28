@@ -13,12 +13,12 @@ spec:
   port: 8080
   liveness:
     path: /manage
-    initialDelay: 20
+    initialDelay: 60
     periodSeconds: 5
     failureThreshold: 10
   readiness:
     path: /manage/health
-    initialDelay: 20
+    initialDelay: 60
     periodSeconds: 5
     failureThreshold: 10
   prometheus:
