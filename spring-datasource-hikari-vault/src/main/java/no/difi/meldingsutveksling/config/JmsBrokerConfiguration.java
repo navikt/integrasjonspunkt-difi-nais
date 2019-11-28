@@ -25,7 +25,7 @@ public class JmsBrokerConfiguration {
 		persistenceAdapter.setAdapter(new PostgresqlJDBCAdapter());
 		persistenceAdapter.setDataSource(jmsDataSource);
 		persistenceAdapter.setUseLock(false);
-		persistenceAdapter.setCreateTablesOnStartup(true);
+		persistenceAdapter.setCreateTablesOnStartup(false);
 		broker.setPersistenceAdapter(persistenceAdapter);
 		activeMQProperties.setBrokerUrl(broker.getVmConnectorURI().toString());
 		return broker;
